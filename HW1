@@ -1,0 +1,30 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+
+intercept = 10
+slope = 5
+
+#1. Generate random dataset
+x = np.random.rand(100, 1)
+y = intercept + slope * x + np.random.normal(0, 1, (100, 1))
+
+#2. Plot random linear scatter plot
+plt.scatter(x, y) 
+plt.plot(x, y, 'o') 
+plt.show()
+
+#3 Split dataset
+X_train = x[0:79]
+X_test = x[80:100]
+Y_train = y[0:79]
+Y_test = y[80:100]
+
+#coefficent of fitted line
+avgX = np.mean(X_train) 
+avgY = np.mean(Y_train)
+m = sum(X_train - avgX)/sum(Y_train - avgY)
+c = avgY - m * avgX
+
+#R^2 and RMS
+
