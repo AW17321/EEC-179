@@ -25,13 +25,24 @@ avgX = np.mean(X_train)
 avgY = np.mean(Y_train)
 m = sum((Y_train - avgY)*(X_train - avgX))/sum((X_train - avgX)*(X_train - avgX))
 c = avgY - m * avgX
+print("Best fit line: ", m, "x + ", c)
 
 plt.plot(x, m*x + c, ls = '-')
 plt.show()
 
-#R^2 and MSE
+#R^2 and MSE of training data set
+SSR1 = sum((Y_train-(m*X_train+c))*(Y_train-(m*X_train+c)))
+SST1 = sum((Y_train-avgY)*(Y_train-avgY))
+Rsqr1 = 1 - SSR1/SST1 
+print("R^2 of training dataset: ", Rsqr1)
+MSE1 = SSR1/len(Y_train)
+print("Mean Squared Error of training dataset: ", MSE1)
+
+#R^2 and MSE of test data set
+avgXtest = np.mean(X_test)
+avgYtest = np.mean(Y_test)
 SSR = sum((Y_test-(m*X_test+c))*(Y_test-(m*X_test+c)))
-SST = sum((Y_test-avgY)*(Y_test-avgY))
+SST = sum((Y_test-avgYtest)*(Y_test-avgYtest))
 Rsqr = 1 - SSR/SST 
 print("R^2 of test dataset: ", Rsqr)
 MSE = SSR/len(Y_test)
