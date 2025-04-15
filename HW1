@@ -15,16 +15,24 @@ plt.plot(x, y, 'o')
 plt.show()
 
 #3 Split dataset
-X_train = x[0:79]
+X_train = x[0:80]
 X_test = x[80:100]
-Y_train = y[0:79]
+Y_train = y[0:80]
 Y_test = y[80:100]
 
 #coefficent of fitted line
 avgX = np.mean(X_train) 
 avgY = np.mean(Y_train)
-m = sum(X_train - avgX)/sum(Y_train - avgY)
+m = sum((Y_train - avgY)*(X_train - avgX))/sum((X_train - avgX)*(X_train - avgX))
 c = avgY - m * avgX
 
-#R^2 and RMS
+plt.plot(x, m*x + c, ls = '-')
+plt.show()
 
+#R^2 and MSE
+SSR = sum((Y_test-(m*X_test+c))*(Y_test-(m*X_test+c)))
+SST = sum((Y_test-avgY)*(Y_test-avgY))
+Rsqr = 1 - SSR/SST 
+print("R^2 of test dataset: ", Rsqr)
+MSE = SSR/len(Y_test)
+print("Mean Squared Error of test dataset: ", MSE)
