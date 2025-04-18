@@ -9,7 +9,7 @@ import pandas as pd
 df = pd.read_csv('polydata.csv')
 x = df['x']
 y = df['y']
-plt.plot(x,y, 'o')
+#plt.plot(x,y, 'o')
 
 #3 Split dataset
 X_train = x[0:80]
@@ -19,6 +19,8 @@ Y_test = y[80:100]
 
 i=0
 while i <= 10:
+
+  plt.plot(x,y, 'o')
   poly = PolynomialFeatures(degree=i)
   x_poly = poly.fit_transform(df)
   model = LinearRegression()
@@ -28,7 +30,7 @@ while i <= 10:
   plt.plot(x, y_pred)
   y_pred = y_pred[0:80]
   
-  #"""
+  """
   #R^2 and MSE of training data set
   avgX = np.mean(X_train) 
   avgY = np.mean(Y_train)
@@ -38,6 +40,7 @@ while i <= 10:
   print("R^2 of training dataset #", i ,": ", Rsqr1)
   MSE1 = SSR1/len(Y_train)
   print("Mean Squared Error of training dataset #", i ,": ", MSE1)
+  RMSE = np.sqrt(MSE1)
   
   #R^2 and MSE of test data set
   avgXtest = np.mean(X_test)
