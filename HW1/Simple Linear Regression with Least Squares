@@ -12,7 +12,6 @@ y = intercept + slope * x + np.random.normal(0, 1, (100, 1))
 #2. Plot random linear scatter plot
 plt.scatter(x, y) 
 plt.plot(x, y, 'o') 
-plt.show()
 
 #3 Split dataset
 X_train = x[0:80]
