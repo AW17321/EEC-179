@@ -18,6 +18,9 @@ Y_train = y[0:80]
 Y_test = y[80:100]
 
 i=0
+RSME = []
+Degree = []
+
 while i <= 10:
 
   plt.plot(x,y, 'o')
@@ -31,7 +34,7 @@ while i <= 10:
   y_pred = y_pred[0:80]
   y_pred2 = y_pred[80:100]
   
-  """
+  #"""
   #R^2 and MSE of training data set
   avgX = np.mean(X_train) 
   avgY = np.mean(Y_train)
@@ -41,7 +44,9 @@ while i <= 10:
   print("R^2 of training dataset #", i ,": ", Rsqr1)
   MSE1 = SSR1/len(Y_train)
   print("Mean Squared Error of training dataset #", i ,": ", MSE1)
-  RMSE = np.sqrt(MSE1)
+  a = np.sqrt(MSE1)
+  RSME.append(a)
+  Degree.append(i)
   
   
   
@@ -57,5 +62,5 @@ while i <= 10:
   print("Mean Squared Error of test dataset #", i ,": ", MSE)
   #"""
   i+=1
-  
+plt.plot(RSME, Degree)  
 plt.show()
